@@ -1,217 +1,159 @@
-<!DOCTYPE html>  
-<html lang="es">  
-<head>  
-  <meta charset="UTF-8">  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-  <title>TecMaya - App para Simplificar tu Día a Día</title>  
-  <meta name="description" content="Descarga TecMaya, la aplicación que simplifica tu día a día. Rápida, segura y fácil de usar para Android.">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descarga TecMaya</title>
 
-  <!-- ✅ CÓDIGO DE VERIFICACIÓN ADSENSE -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7934158535084967"
-          crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
-  <script src="https://cdn.tailwindcss.com"></script>  
-  <style>  
-    body { box-sizing: border-box; margin: 0; padding: 0; }
-    .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
-    .download-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-    .feature-card:hover { transform: translateY(-5px); }
-    * { transition: all 0.3s ease; }
-  </style>  
-</head>  
-<body class="gradient-bg min-h-screen flex flex-col justify-between">  
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
 
-  <div class="container mx-auto px-4 py-8 flex-grow">  
-    <!-- Header -->  
-    <header class="text-center mb-12">  
-      <div class="w-32 h-32 mx-auto mb-6 bg-white/20 rounded-2xl flex items-center justify-center">
+<body class="gradient-bg min-h-screen flex flex-col justify-between">
 
-      <img src="logo.png" alt="Logo TecMaya" class="w-full h-full object-contain">
-      </div>
-      <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">TecMaya</h1>
-      <p class="text-xl text-white/90 max-w-2xl mx-auto">
-        La aplicación revolucionaria que necesitas para simplificar tu día a día. Diseñada para ser rápida, segura y extremadamente fácil de usar.
-      </p>
+<div class="container mx-auto px-4 py-8 flex-grow">
+
+    <!-- Header -->
+    <header class="text-center mb-12">
+        <div class="w-32 h-32 mx-auto mb-6">
+            <img src="logo.png" alt="Logo TecMaya" class="w-full h-full object-contain">
+        </div>
+
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">TecMaya</h1>
+
+        <p class="text-xl text-white/90 max-w-2xl mx-auto">
+            La aplicación que necesitas para simplificar tu día a día. Rápida, segura y fácil de usar.
+        </p>
     </header>
 
-    <!-- Download Section -->  
-    <div class="text-center mb-16">  
-      <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 max-w-md mx-auto shadow-xl">  
-        <h2 class="text-2xl font-bold text-white mb-6">Descarga Gratis</h2>  
-        <button onclick="downloadAPK()" class="download-btn w-full bg-green-600 text-white py-4 px-6 rounded-xl flex items-center justify-center space-x-3 transition-all duration-300 hover:bg-green-700">  
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>  
-          <div class="text-left">  
-            <div class="text-xs">Descargar para</div>  
-            <div class="text-lg font-semibold">Android</div>  
-          </div>  
-        </button>  
-        <p class="text-white/70 text-sm mt-4">Versión 1.0 • 100% Gratis • 6.7MB</p>  
-      </div>  
-    </div>  
+    <!-- Download Section -->
+    <div class="text-center mb-16">
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 max-w-md mx-auto shadow-xl">
 
-    <!-- Más contenido para AdSense -->
-    <div class="max-w-4xl mx-auto mb-12">
-      <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 text-white">
-        <h2 class="text-3xl font-bold mb-6 text-center">¿Por qué elegir TecMaya?</h2>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div>
-            <h3 class="text-xl font-semibold mb-3">Características Principales</h3>
-            <ul class="space-y-2 text-white/90">
-              <li class="flex items-center"><span class="mr-2">✓</span> Interfaz intuitiva y moderna</li>
-              <li class="flex items-center"><span class="mr-2">✓</span> Sin anuncios intrusivos</li>
-              <li class="flex items-center"><span class="mr-2">✓</span> Actualizaciones frecuentes</li>
-              <li class="flex items-center"><span class="mr-2">✓</span> Soporte para múltiples idiomas</li>
-              <li class="flex items-center"><span class="mr-2">✓</span> Compatible con Android 8+</li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="text-xl font-semibold mb-3">Beneficios</h3>
-            <ul class="space-y-2 text-white/90">
-              <li class="flex items-center"><span class="mr-2">🚀</span> Ahorra tiempo en tus tareas diarias</li>
-              <li class="flex items-center"><span class="mr-2">📊</span> Organiza tu información eficientemente</li>
-              <li class="flex items-center"><span class="mr-2">⚡</span> Acceso rápido a funciones esenciales</li>
-              <li class="flex items-center"><span class="mr-2">🔋</span> Diseño optimizado para batería</li>
-              <li class="flex items-center"><span class="mr-2">🔒</span> Seguridad de nivel empresarial</li>
-            </ul>
-          </div>
+            <h2 class="text-2xl font-bold text-white mb-6">Descarga Gratis</h2>
+
+            <button onclick="downloadAPK()" class="download-btn w-full bg-green-600 text-white py-4 px-6 rounded-xl flex items-center justify-center space-x-3 transition-all duration-300 hover:bg-green-700">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                </svg>
+
+                <div class="text-left">
+                    <div class="text-xs">Descargar para</div>
+                    <div class="text-lg font-semibold">Android</div>
+                </div>
+            </button>
+
+            <p class="text-white/70 text-sm mt-4">Versión 1.0 • Gratis • 6.7MB</p>
         </div>
-      </div>
     </div>
 
-    <!-- Features -->  
-    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">  
-      <div class="feature-card bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center transition-all duration-300">  
-        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">  
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">  
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>  
-          </svg>  
-        </div>  
-        <h3 class="text-white font-semibold mb-2">Optimizada para Velocidad</h3>  
-        <p class="text-white/80 text-sm">Cargamiento ultrarrápido y funcionamiento fluido incluso en dispositivos de gama media</p>  
-      </div>  
-  
-      <div class="feature-card bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center transition-all duration-300">  
-        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">  
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">  
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>  
-          </svg>  
-        </div>  
-        <h3 class="text-white font-semibold mb-2">Protección Avanzada</h3>  
-        <p class="text-white/80 text-sm">Encriptación de nivel bancario para proteger todos tus datos personales</p>  
-      </div>  
-  
-      <div class="feature-card bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center transition-all duration-300">  
-        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">  
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">  
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>  
-          </svg>  
-        </div>  
-        <h3 class="text-white font-semibold mb-2">Experiencia Intuitiva</h3>  
-        <p class="text-white/80 text-sm">Diseño pensado para usuarios de todos los niveles, sin curva de aprendizaje</p>  
-      </div>  
-    </div>  
+    <!-- Features -->
+    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
 
-    <!-- FAQ Section -->
-    <div class="max-w-4xl mx-auto bg-white/10 backdrop-blur-lg rounded-2xl p-8 text-white mb-12">
-      <h2 class="text-3xl font-bold mb-6 text-center">Preguntas Frecuentes</h2>
-      <div class="space-y-6">
-        <div class="bg-white/5 rounded-lg p-4">
-          <h3 class="font-semibold mb-2 text-lg">¿Es realmente gratuita?</h3>
-          <p class="text-white/80">Sí, TecMaya es completamente gratuita sin funciones limitadas. No requiere suscripciones ni pagos ocultos.</p>
+        <div class="feature-card bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center transition-all duration-300">
+            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+            </div>
+            <h3 class="text-white font-semibold mb-2">Súper Rápida</h3>
+            <p class="text-white/80 text-sm">Optimizada para funcionar sin problemas en cualquier dispositivo</p>
         </div>
-        <div class="bg-white/5 rounded-lg p-4">
-          <h3 class="font-semibold mb-2 text-lg">¿Qué versión de Android necesito?</h3>
-          <p class="text-white/80">Android 8.0 (Oreo) o superior para mejor experiencia. Optimizada para Android 10+.</p>
+
+        <div class="feature-card bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center transition-all duration-300">
+            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+            </div>
+            <h3 class="text-white font-semibold mb-2">100% Segura</h3>
+            <p class="text-white/80 text-sm">Tus datos están protegidos con encriptación de nivel bancario</p>
         </div>
-        <div class="bg-white/5 rounded-lg p-4">
-          <h3 class="font-semibold mb-2 text-lg">¿Cómo actualizo la aplicación?</h3>
-          <p class="text-white/80">Las actualizaciones se notificarán automáticamente dentro de la app. También puedes descargar la última versión desde nuestro sitio web.</p>
+
+        <div class="feature-card bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center transition-all duration-300">
+            <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+            </div>
+            <h3 class="text-white font-semibold mb-2">Fácil de Usar</h3>
+            <p class="text-white/80 text-sm">Interfaz intuitiva diseñada para que cualquiera pueda usarla</p>
         </div>
-        <div class="bg-white/5 rounded-lg p-4">
-          <h3 class="font-semibold mb-2 text-lg">¿Requiere permisos especiales?</h3>
-          <p class="text-white/80">Solo los permisos necesarios para su funcionamiento básico. Respetamos tu privacidad.</p>
-        </div>
-      </div>
+
     </div>
+</div>
 
-    <!-- Llamada a la acción final -->
-    <div class="text-center mb-8">
-      <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 max-w-2xl mx-auto">
-        <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">¿Listo para simplificar tu vida?</h2>
-        <p class="text-white/80 mb-6">Descarga TecMaya ahora y descubre una nueva forma de organizar tu día a día</p>
-        <button onclick="downloadAPK()" class="download-btn bg-green-600 text-white py-4 px-8 rounded-xl inline-flex items-center justify-center space-x-3 transition-all duration-300 hover:bg-green-700">
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-          <span class="text-lg font-semibold">Descargar Ahora</span>
-        </button>
-      </div>
-    </div>
-  </div>  
+<!-- 🔹 FOOTER -->
+<footer class="bg-purple-800 text-white text-center py-10 mt-12">
 
-  <!-- FOOTER -->
-  <footer class="bg-purple-900/80 text-white text-center py-10 mt-12">
     <div class="max-w-4xl mx-auto px-4">
-      <div class="flex flex-col items-center mb-6">
-        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-3">
-          <span class="text-white font-bold text-xl">TM</span>
+
+        <div class="flex flex-col items-center mb-6">
+            <img src="logo.png" alt="Logo TecMaya" class="w-16 h-16 mb-3">
+            <h2 class="text-xl font-semibold">TecMaya</h2>
         </div>
-        <h2 class="text-xl font-semibold">TecMaya</h2>
-        <p class="text-white/70 mt-2">Simplificando tu día a día</p>
-      </div>
 
-      <p class="text-white/70 text-sm mb-6">© 2025 TecMaya. Todos los derechos reservados.</p>
+        <p class="text-white/70 text-sm mb-4">© 2025 TecMaya. Todos los derechos reservados.</p>
 
-      <div class="flex flex-col md:flex-row justify-center gap-6 text-sm mb-6">
-        <a href="#" class="hover:underline text-white/80 hover:text-white">Quiénes somos</a>
-        <a href="#" class="hover:underline text-white/80 hover:text-white">Política de privacidad</a>
-        <a href="#" class="hover:underline text-white/80 hover:text-white">Términos de uso</a>
-        <a href="#" class="hover:underline text-white/80 hover:text-white">Contáctanos</a>
-        <a href="#" class="hover:underline text-white/80 hover:text-white">Soporte técnico</a>
-      </div>
+        <div class="flex flex-col md:flex-row justify-center gap-4 text-sm">
+            <a href="#" class="hover:underline">Quiénes somos</a>
+            <a href="#" class="hover:underline">Política de privacidad</a>
+            <a href="#" class="hover:underline">Términos de uso</a>
+            <a href="#" class="hover:underline">Contáctanos</a>
+        </div>
 
-      <div class="mt-6 text-white/60 text-sm space-y-1">
-        <p>Compatible con Android 8.0 y versiones superiores</p>
-        <p>Correo electrónico: david.24070024@itsmotul.edu.mx</p>
-        <p>Teléfono: (+52) 99-11-08-42-11</p>
-        <p class="text-xs mt-4">TecMaya no está afiliada a Google Inc. Android es una marca registrada de Google Inc.</p>
-      </div>
+        <div class="mt-6 text-white/60 text-sm">
+            <p>Compatible con Android 8+</p>
+            <p>Correo: david.24070024@itsmotul.edu.mx</p>
+            <p>Teléfono: (+52) 99-11-08-42-11</p>
+        </div>
+
     </div>
-  </footer>
+</footer>
 
-  <script>  
-    function downloadAPK() {  
-      const notification = document.createElement('div');  
-      notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300';  
-      notification.textContent = '¡Descargando TecMaya APK!';  
-      document.body.appendChild(notification);  
-  
-      setTimeout(() => { notification.classList.remove('translate-x-full'); }, 100);  
-      setTimeout(() => {  
-        const link = document.createElement('a');  
-        link.href = 'app-debug.apk';  
-        link.download = 'TecMaya-v1.0.apk';  
-        document.body.appendChild(link);  
-        link.click();  
-        document.body.removeChild(link);  
-      }, 1000);  
-      setTimeout(() => {  
-        notification.classList.add('translate-x-full');  
-        setTimeout(() => { document.body.removeChild(notification); }, 300);  
-      }, 3000);  
-    }  
+<script>
+    function downloadAPK() {
+        const notification = document.createElement('div');
+        notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300';
+        notification.textContent = '¡Descargando TecMaya APK!';
+        document.body.appendChild(notification);
 
-    // Efecto de scroll suave
-    document.addEventListener('DOMContentLoaded', function() {
-      const links = document.querySelectorAll('a[href^="#"]');
-      links.forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-          }
-        });
-      });
-    });
-  </script>  
-</body>  
+        setTimeout(() => {
+            notification.classList.remove('translate-x-full');
+        }, 100);
+
+        setTimeout(() => {
+            const link = document.createElement('a');
+            link.href = 'app-debug.apk';
+            link.download = 'TecMaya-v1.0.apk';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }, 1000);
+
+        setTimeout(() => {
+            notification.classList.add('translate-x-full');
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 300);
+        }, 3000);
+    }
+</script>
+
+</body>
 </html>
