@@ -3,157 +3,2800 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Descarga TecMaya</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
+    <title>Aprende Maya - Plataforma de Aprendizaje</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
+        :root {
+            --primary-color: #2c5f2d;
+            --secondary-color: #97bc62;
+            --accent-color: #e8d33f;
+            --light-color: #f5f5f5;
+            --dark-color: #1a1a1a;
+            --gray-color: #6c757d;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --info-color: #17a2b8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
         }
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        .feature-card:hover {
-            transform: translateY(-5px);
+        
+        /* Header y Navegación */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .logo-img {
+            height: 40px;
+            width: auto;
+            vertical-align: middle;
+        }
+
+        .logo span {
+            margin-left: 10px;
+            color: white;
+        }
+        
+        .logo i {
+            color: var(--accent-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        /* Sistema de autenticación */
+        .auth-container {
+            position: relative;
+        }
+        
+        .auth-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+        }
+        
+        .auth-form {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            padding: 20px;
+            width: 300px;
+            margin-top: 10px;
+            display: none;
+            color: var(--dark-color);
+        }
+        
+        .auth-form.active {
+            display: block;
+        }
+        
+        .auth-form h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .auth-submit {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .auth-switch {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .auth-switch a {
+            color: var(--primary-color);
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        
+        .user-info {
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .user-info.active {
+            display: flex;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .logout-btn {
+            background-color: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Niveles de aprendizaje */
+        .levels-section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+            font-size: 2rem;
+        }
+        
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .level-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .level-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .level-header {
+            padding: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .level-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .level-difficulty {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        .level-content {
+            padding: 20px;
+        }
+        
+        .level-content p {
+            margin-bottom: 15px;
+        }
+        
+        .level-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .level-features li {
+            padding: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .level-features i {
+            color: var(--success-color);
+        }
+        
+        .level-button {
+            display: block;
+            width: 100%;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .level-button:hover {
+            background-color: #7aa84a;
+        }
+        
+        .exam-button {
+            display: block;
+            width: 100%;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        
+        .exam-button:hover {
+            background-color: #d4c12c;
+        }
+        
+        /* Sistema de tareas */
+        .tasks-section {
+            padding: 4rem 0;
+            background-color: #f0f0f0;
+        }
+        
+        .tasks-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .tasks-progress {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .progress-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .progress-bar-container {
+            margin-bottom: 20px;
+        }
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .progress-bar {
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 1s ease-in-out;
+        }
+        
+        .points-display {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .tasks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .task-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .task-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+        
+        .task-points {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        .task-description {
+            margin-bottom: 20px;
+            color: var(--gray-color);
+        }
+        
+        .task-status {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .task-complete-btn {
+            background-color: var(--info-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .task-complete-btn.completed {
+            background-color: var(--gray-color);
+            cursor: default;
+        }
+        
+        .task-status-label {
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .task-status-label.completed {
+            color: var(--success-color);
+        }
+        
+        .task-status-label.pending {
+            color: var(--warning-color);
+        }
+        
+        /* Modal para lecciones */
+        .lesson-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        
+        .lesson-modal.active {
+            display: flex;
+        }
+        
+        .lesson-content {
+            background-color: white;
+            border-radius: 10px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .lesson-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .lesson-header h3 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        
+        .close-lesson {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        
+        .close-lesson:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .lesson-body {
+            padding: 25px;
+        }
+        
+        .lesson-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .lesson-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .lesson-section h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .lesson-section h4 i {
+            color: var(--accent-color);
+        }
+        
+        .pronunciation-box {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--info-color);
+        }
+        
+        .maya-word {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .pronunciation {
+            font-size: 1.2rem;
+            color: var(--gray-color);
+            text-align: center;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        .audio-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .play-audio {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .play-audio:hover {
+            transform: scale(1.05);
+        }
+        
+        .meaning {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--dark-color);
+        }
+        
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .example-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .example-maya {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .example-spanish {
+            color: var(--gray-color);
+            font-size: 0.95rem;
+        }
+        
+        .lesson-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .complete-lesson {
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .complete-lesson.completed {
+            background-color: var(--gray-color);
+            cursor: default;
+        }
+        
+        .lesson-points {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+        
+        /* Modal para exámenes */
+        .exam-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        
+        .exam-modal.active {
+            display: flex;
+        }
+        
+        .exam-content {
+            background-color: white;
+            border-radius: 10px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .exam-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .exam-header h3 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        
+        .close-exam {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        
+        .close-exam:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .exam-body {
+            padding: 25px;
+        }
+        
+        .exam-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--info-color);
+        }
+        
+        .exam-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .exam-timer {
+            background-color: var(--warning-color);
+            color: var(--dark-color);
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .exam-question {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .exam-question:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+        
+        .question-text .question-number {
+            background-color: var(--primary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+        
+        .exam-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .exam-option {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .exam-option:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .exam-option.selected {
+            border-color: var(--primary-color);
+            background-color: rgba(44, 95, 45, 0.1);
+        }
+        
+        .exam-option input[type="radio"] {
+            margin-right: 5px;
+        }
+        
+        .exam-text-answer {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+        
+        .exam-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .submit-exam {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .submit-exam:disabled {
+            background-color: var(--gray-color);
+            cursor: not-allowed;
+        }
+        
+        .exam-results {
+            padding: 25px;
+        }
+        
+        .results-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .results-score {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .results-message {
+            font-size: 1.2rem;
+            color: var(--gray-color);
+        }
+        
+        .results-details {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .results-details h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .results-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .stat-item {
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray-color);
+        }
+        
+        .results-questions {
+            margin-top: 20px;
+        }
+        
+        .result-question {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            background-color: #f8f9fa;
+        }
+        
+        .result-question.correct {
+            border-left: 4px solid var(--success-color);
+        }
+        
+        .result-question.incorrect {
+            border-left: 4px solid var(--danger-color);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-column h3 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .auth-form {
+                position: fixed;
+                width: calc(100% - 40px);
+                left: 20px;
+                right: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .levels-grid, .tasks-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .lesson-content, .exam-content {
+                max-height: 95vh;
+            }
+            
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .results-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Mensajes del sistema */
+        .message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: none;
+        }
+        
+        .message.success {
+            background-color: var(--success-color);
+        }
+        
+        .message.error {
+            background-color: var(--danger-color);
+        }
+        
+        .message.info {
+            background-color: var(--info-color);
         }
     </style>
 </head>
-
-<body class="gradient-bg min-h-screen flex flex-col justify-between">
-
-<div class="container mx-auto px-4 py-8 flex-grow">
-
+<body>
     <!-- Header -->
-    <header class="text-center mb-12">
-        <div class="w-32 h-32 mx-auto mb-6">
-            <img src="logo.png" alt="Logo TecMaya" class="w-full h-full object-contain">
-        </div>
-
-        <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">TecMaya</h1>
-
-        <p class="text-xl text-white/90 max-w-2xl mx-auto">
-            La aplicación que necesitas para simplificar tu día a día. Rápida, segura y fácil de usar.
-        </p>
-    </header>
-
-    <!-- Download Section -->
-    <div class="text-center mb-16">
-        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 max-w-md mx-auto shadow-xl">
-
-            <h2 class="text-2xl font-bold text-white mb-6">Descarga Gratis</h2>
-
-            <button onclick="downloadAPK()" class="download-btn w-full bg-green-600 text-white py-4 px-6 rounded-xl flex items-center justify-center space-x-3 transition-all duration-300 hover:bg-green-700">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                </svg>
-
-                <div class="text-left">
-                    <div class="text-xs">Descargar para</div>
-                    <div class="text-lg font-semibold">Android</div>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <!-- Tu logo como imagen -->
+                <a href="index.html">
+                    <img src="logo.png" alt="Aprende Maya - Logo" class="logo-img">
+                    <span>Aprende Maya</span>
+                </a>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#inicio" class="active">Inicio</a></li>
+                    <li><a href="#niveles">Niveles</a></li>
+                    <li><a href="#tareas">Mis Tareas</a></li>
+                    <li><a href="#recursos">Recursos</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-container">
+                <button class="auth-btn" id="authBtn">
+                    <i class="fas fa-user"></i>
+                    <span>Iniciar Sesión</span>
+                </button>
+                
+                <div class="user-info" id="userInfo">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <span id="userEmail">usuario@ejemplo.com</span>
+                    <button class="logout-btn" id="logoutBtn">Cerrar Sesión</button>
                 </div>
-            </button>
-
-            <p class="text-white/70 text-sm mt-4">Versión 1.0 • Gratis • 6.7MB</p>
+                
+                <div class="auth-form" id="authForm">
+                    <h3 id="authFormTitle">Iniciar Sesión</h3>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="loginEmail">Correo electrónico</label>
+                            <input type="email" id="loginEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Contraseña</label>
+                            <input type="password" id="loginPassword" required>
+                        </div>
+                        <button type="submit" class="auth-submit">Iniciar Sesión</button>
+                    </form>
+                    
+                    <form id="registerForm" style="display: none;">
+                        <div class="form-group">
+                            <label for="registerName">Nombre completo</label>
+                            <input type="text" id="registerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerEmail">Correo electrónico</label>
+                            <input type="email" id="registerEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">Contraseña</label>
+                            <input type="password" id="registerPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerConfirmPassword">Confirmar Contraseña</label>
+                            <input type="password" id="registerConfirmPassword" required>
+                        </div>
+                        <button type="submit" class="auth-submit">Registrarse</button>
+                    </form>
+                    
+                    <div class="auth-switch">
+                        <span id="authSwitchText">¿No tienes una cuenta? </span>
+                        <a id="authSwitchLink">Regístrate aquí</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h1>Aprende el Idioma Maya en Línea</h1>
+            <p>Explora la rica cultura y lengua maya a través de nuestros cursos interactivos. Desde principiante hasta avanzado, tenemos el nivel perfecto para ti.</p>
+            <a href="#niveles" class="cta-button">Comenzar a Aprender</a>
+        </div>
+    </section>
+    
+    <!-- Niveles de Aprendizaje -->
+    <section class="levels-section" id="niveles">
+        <div class="container">
+            <h2 class="section-title">Niveles de Aprendizaje</h2>
+            <div class="levels-grid">
+                <!-- Nivel Básico -->
+                <div class="level-card">
+                    <div class="level-header">
+                        <div class="level-title">Nivel Básico</div>
+                        <div class="level-difficulty">Fácil</div>
+                    </div>
+                    <div class="level-content">
+                        <p>Introducción al idioma maya: saludos, números, colores y frases cotidianas.</p>
+                        <ul class="level-features">
+                            <li><i class="fas fa-check-circle"></i> Saludos y presentaciones</li>
+                            <li><i class="fas fa-check-circle"></i> Números del 1 al 100</li>
+                            <li><i class="fas fa-check-circle"></i> Colores y formas básicas</li>
+                            <li><i class="fas fa-check-circle"></i> Frases de uso diario</li>
+                            <li><i class="fas fa-check-circle"></i> 7 lecciones con puntos</li>
+                            <li><i class="fas fa-check-circle"></i> Examen final de nivel</li>
+                        </ul>
+                        <button class="level-button" data-level="basico">Comenzar Nivel</button>
+                        <button class="exam-button" data-level="basico" id="basicoExamBtn">Tomar Examen Nivel Básico</button>
+                    </div>
+                </div>
+                
+                <!-- Nivel Intermedio -->
+                <div class="level-card">
+                    <div class="level-header">
+                        <div class="level-title">Nivel Intermedio</div>
+                        <div class="level-difficulty">Medio</div>
+                    </div>
+                    <div class="level-content">
+                        <p>Amplía tu vocabulario y aprende gramática para formar oraciones más complejas.</p>
+                        <ul class="level-features">
+                            <li><i class="fas fa-check-circle"></i> Verbos y conjugaciones</li>
+                            <li><i class="fas fa-check-circle"></i> Familia y relaciones</li>
+                            <li><i class="fas fa-check-circle"></i> Comida y restaurantes</li>
+                            <li><i class="fas fa-check-circle"></i> Direcciones y ubicaciones</li>
+                            <li><i class="fas fa-check-circle"></i> 5 lecciones con puntos</li>
+                            <li><i class="fas fa-check-circle"></i> Examen final de nivel</li>
+                        </ul>
+                        <button class="level-button" data-level="intermedio">Comenzar Nivel</button>
+                        <button class="exam-button" data-level="intermedio" id="intermedioExamBtn">Tomar Examen Nivel Intermedio</button>
+                    </div>
+                </div>
+                
+                <!-- Nivel Avanzado -->
+                <div class="level-card">
+                    <div class="level-header">
+                        <div class="level-title">Nivel Avanzado</div>
+                        <div class="level-difficulty">Difícil</div>
+                    </div>
+                    <div class="level-content">
+                        <p>Domina la lengua maya con conversaciones fluidas y comprensión de textos tradicionales.</p>
+                        <ul class="level-features">
+                            <li><i class="fas fa-check-circle"></i> Conversaciones avanzadas</li>
+                            <li><i class="fas fa-check-circle"></i> Literatura maya tradicional</li>
+                            <li><i class="fas fa-check-circle"></i> Expresiones idiomáticas</li>
+                            <li><i class="fas fa-check-circle"></i> Cultura e historia maya</li>
+                            <li><i class="fas fa-check-circle"></i> 6 lecciones con puntos</li>
+                            <li><i class="fas fa-check-circle"></i> Examen final de nivel</li>
+                        </ul>
+                        <button class="level-button" data-level="avanzado">Comenzar Nivel</button>
+                        <button class="exam-button" data-level="avanzado" id="avanzadoExamBtn">Tomar Examen Nivel Avanzado</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sistema de Tareas -->
+    <section class="tasks-section" id="tareas">
+        <div class="container">
+            <h2 class="section-title">Mis Lecciones y Progreso</h2>
+            <div class="tasks-container">
+                <div class="tasks-progress">
+                    <div class="progress-title">
+                        <span>Progreso General</span>
+                        <span id="totalPoints">0 puntos</span>
+                    </div>
+                    
+                    <div class="progress-info">
+                        <span id="tasksCompleted">0 lecciones completadas</span>
+                        <span id="tasksPercentage">0%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="points-display">
+                        <div id="pointsBreakdown">
+                            <p>Nivel Básico: <span id="basicPoints">0</span> puntos de 30 posibles</p>
+                            <p>Nivel Intermedio: <span id="intermediatePoints">0</span> puntos de 23 posibles</p>
+                            <p>Nivel Avanzado: <span id="advancedPoints">0</span> puntos de 35 posibles</p>
+                            <p><strong>Total: <span id="totalPointsValue">0</span> puntos de 88 posibles</strong></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tasks-grid" id="tasksGrid">
+                    <!-- Las lecciones se cargarán dinámicamente aquí -->
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Modal para lecciones -->
+    <div class="lesson-modal" id="lessonModal">
+        <div class="lesson-content">
+            <div class="lesson-header">
+                <h3 id="lessonTitle">Título de la Lección</h3>
+                <button class="close-lesson" id="closeLesson">&times;</button>
+            </div>
+            <div class="lesson-body" id="lessonContent">
+                <!-- El contenido de la lección se cargará aquí -->
+            </div>
+            <div class="lesson-footer">
+                <div class="lesson-points" id="lessonPoints">Puntos: 0</div>
+                <button class="complete-lesson" id="completeLessonBtn">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Marcar como Completada</span>
+                </button>
+            </div>
         </div>
     </div>
-
-    <!-- Features -->
-    <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-
-        <div class="feature-card bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center transition-all duration-300">
-            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                </svg>
+    
+    <!-- Modal para exámenes -->
+    <div class="exam-modal" id="examModal">
+        <div class="exam-content">
+            <div class="exam-header">
+                <h3 id="examTitle">Examen de Nivel</h3>
+                <button class="close-exam" id="closeExam">&times;</button>
             </div>
-            <h3 class="text-white font-semibold mb-2">Súper Rápida</h3>
-            <p class="text-white/80 text-sm">Optimizada para funcionar sin problemas en cualquier dispositivo</p>
-        </div>
-
-        <div class="feature-card bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center transition-all duration-300">
-            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
+            <div class="exam-body" id="examContent">
+                <!-- El contenido del examen se cargará aquí -->
             </div>
-            <h3 class="text-white font-semibold mb-2">100% Segura</h3>
-            <p class="text-white/80 text-sm">Tus datos están protegidos con encriptación de nivel bancario</p>
-        </div>
-
-        <div class="feature-card bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center transition-all duration-300">
-            <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                </svg>
+            <div class="exam-footer">
+                <div class="exam-timer" id="examTimer">Tiempo: 30:00</div>
+                <button class="submit-exam" id="submitExamBtn">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Enviar Examen</span>
+                </button>
             </div>
-            <h3 class="text-white font-semibold mb-2">Fácil de Usar</h3>
-            <p class="text-white/80 text-sm">Interfaz intuitiva diseñada para que cualquiera pueda usarla</p>
         </div>
-
     </div>
-</div>
-
-<!-- 🔹 FOOTER -->
-<footer class="bg-purple-800 text-white text-center py-10 mt-12">
-
-    <div class="max-w-4xl mx-auto px-4">
-
-        <div class="flex flex-col items-center mb-6">
-            <img src="logo.png" alt="Logo TecMaya" class="w-16 h-16 mb-3">
-            <h2 class="text-xl font-semibold">TecMaya</h2>
+    
+    <!-- Footer -->
+    <footer id="recursos">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Aprende Maya</h3>
+                    <p>Plataforma dedicada a la enseñanza del idioma maya en línea. Ofrecemos cursos interactivos para todos los niveles.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Recursos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Diccionario Maya-Español</a></li>
+                        <li><a href="#">Videos de Pronunciación</a></li>
+                        <li><a href="#">Textos Tradicionales</a></li>
+                        <li><a href="#">Foro de la Comunidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><a href="#">Soporte Técnico</a></li>
+                        <li><a href="#">Colaboraciones</a></li>
+                        <li><a href="#">Donaciones</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Aprende Maya. Todos los derechos reservados.
+            </div>
         </div>
-
-        <p class="text-white/70 text-sm mb-4">© 2025 TecMaya. Todos los derechos reservados.</p>
-
-        <div class="flex flex-col md:flex-row justify-center gap-4 text-sm">
-            <a href="#" class="hover:underline">Quiénes somos</a>
-            <a href="#" class="hover:underline">Política de privacidad</a>
-            <a href="#" class="hover:underline">Términos de uso</a>
-            <a href="#" class="hover:underline">Contáctanos</a>
-        </div>
-
-        <div class="mt-6 text-white/60 text-sm">
-            <p>Compatible con Android 8+</p>
-            <p>Correo: david.24070024@itsmotul.edu.mx</p>
-            <p>Teléfono: (+52) 99-11-08-42-11</p>
-        </div>
-
-    </div>
-</footer>
-
-<script>
-    function downloadAPK() {
-        const notification = document.createElement('div');
-        notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300';
-        notification.textContent = '¡Descargando TecMaya APK!';
-        document.body.appendChild(notification);
-
-        setTimeout(() => {
-            notification.classList.remove('translate-x-full');
-        }, 100);
-
-        setTimeout(() => {
-            const link = document.createElement('a');
-            link.href = 'app-debug.apk';
-            link.download = 'TecMaya-v1.0.apk';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }, 1000);
-
-        setTimeout(() => {
-            notification.classList.add('translate-x-full');
+    </footer>
+    
+    <!-- Mensajes del sistema -->
+    <div class="message" id="systemMessage"></div>
+    
+    <script>
+        // Base de datos de lecciones
+        const lessonsData = {
+            basico: [
+                {
+                    id: 1,
+                    title: "Saludos Básicos",
+                    description: "Aprende y practica los saludos comunes en maya.",
+                    points: 5,
+                    completed: false,
+                    content: {
+                        introduction: "Los saludos son esenciales para iniciar una conversación en maya. Aprende las formas más comunes de saludar.",
+                        sections: [
+                            {
+                                title: "Buenos días",
+                                icon: "fas fa-sun",
+                                items: [
+                                    {
+                                        maya: "Ma'alob k'iin",
+                                        pronunciation: "Ma-a-lob k'in",
+                                        meaning: "Buenos días (literalmente: 'Buen día')",
+                                        audioText: "Ma'alob k'iin"
+                                    }
+                                ],
+                                examples: [
+                                    { maya: "Ma'alob k'iin, bix a beel?", spanish: "Buenos días, ¿cómo estás?" },
+                                    { maya: "Ma'alob k'iin, yum", spanish: "Buenos días, padre" }
+                                ]
+                            },
+                            {
+                                title: "Buenas tardes",
+                                icon: "fas fa-cloud-sun",
+                                items: [
+                                    {
+                                        maya: "Ma'alob ch'iinil k'iin",
+                                        pronunciation: "Ma-a-lob chi-nil k'in",
+                                        meaning: "Buenas tardes",
+                                        audioText: "Ma'alob ch'iinil k'iin"
+                                    }
+                                ],
+                                examples: [
+                                    { maya: "Ma'alob ch'iinil k'iin", spanish: "Buenas tardes" },
+                                    { maya: "Ma'alob ch'iinil k'iin, ba'ax ka wa'alik?", spanish: "Buenas tardes, ¿qué hay de nuevo?" }
+                                ]
+                            },
+                            {
+                                title: "Buenas noches",
+                                icon: "fas fa-moon",
+                                items: [
+                                    {
+                                        maya: "Ma'alob áak'ab",
+                                        pronunciation: "Ma-a-lob a-ka-ab",
+                                        meaning: "Buenas noches",
+                                        audioText: "Ma'alob áak'ab"
+                                    }
+                                ],
+                                examples: [
+                                    { maya: "Ma'alob áak'ab", spanish: "Buenas noches" },
+                                    { maya: "Ma'alob áak'ab, yan in bin", spanish: "Buenas noches, me voy" }
+                                ]
+                            },
+                            {
+                                title: "¿Cómo estás?",
+                                icon: "fas fa-comment",
+                                items: [
+                                    {
+                                        maya: "Bix a beel?",
+                                        pronunciation: "Bish a bel",
+                                        meaning: "¿Cómo estás?",
+                                        audioText: "Bix a beel"
+                                    },
+                                    {
+                                        maya: "Bix a wilik?",
+                                        pronunciation: "Bish a wi-lik",
+                                        meaning: "¿Cómo lo ves? / ¿Qué piensas?",
+                                        audioText: "Bix a wilik"
+                                    }
+                                ],
+                                examples: [
+                                    { maya: "Bix a beel lelo'?", spanish: "¿Cómo estás hoy?" },
+                                    { maya: "Bix a wilik le kaaxo'?", spanish: "¿Qué piensas del monte?" }
+                                ]
+                            },
+                            {
+                                title: "Respuestas comunes",
+                                icon: "fas fa-reply",
+                                items: [
+                                    {
+                                        maya: "Jach ma'alob",
+                                        pronunciation: "Jach ma-a-lob",
+                                        meaning: "Muy bien",
+                                        audioText: "Jach ma'alob"
+                                    },
+                                    {
+                                        maya: "Mix ba'al",
+                                        pronunciation: "Mish ba-al",
+                                        meaning: "Estoy bien / No hay problema",
+                                        audioText: "Mix ba'al"
+                                    },
+                                    {
+                                        maya: "Ma' utzil",
+                                        pronunciation: "Ma u-tsil",
+                                        meaning: "No estoy bien",
+                                        audioText: "Ma' utzil"
+                                    }
+                                ],
+                                examples: [
+                                    { maya: "Jach ma'alob, kux teech?", spanish: "Muy bien, ¿y tú?" },
+                                    { maya: "Mix ba'al, yan in meyah", spanish: "Estoy bien, estoy trabajando" }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 2,
+                    title: "Números 1-20",
+                    description: "Memoriza los números del 1 al 20 en maya.",
+                    points: 4,
+                    completed: false,
+                    content: {
+                        introduction: "Los números en maya tienen un sistema vigesimal (base 20). Aprende los números básicos del 1 al 20.",
+                        sections: [
+                            {
+                                title: "Números del 1 al 10",
+                                icon: "fas fa-list-ol",
+                                items: [
+                                    { maya: "Jun", pronunciation: "Jun", meaning: "Uno", audioText: "Jun" },
+                                    { maya: "Ka'", pronunciation: "Ka", meaning: "Dos", audioText: "Ka'" },
+                                    { maya: "Óox", pronunciation: "Osh", meaning: "Tres", audioText: "Óox" },
+                                    { maya: "Kan", pronunciation: "Kan", meaning: "Cuatro", audioText: "Kan" },
+                                    { maya: "Jo'", pronunciation: "Ho", meaning: "Cinco", audioText: "Jo'" },
+                                    { maya: "Wáak", pronunciation: "Wa-ak", meaning: "Seis", audioText: "Wáak" },
+                                    { maya: "Úuk", pronunciation: "U-uk", meaning: "Siete", audioText: "Úuk" },
+                                    { maya: "Waxak", pronunciation: "Wa-shak", meaning: "Ocho", audioText: "Waxak" },
+                                    { maya: "Bolon", pronunciation: "Bo-lon", meaning: "Nueve", audioText: "Bolon" },
+                                    { maya: "Láajun", pronunciation: "La-a-hun", meaning: "Diez", audioText: "Láajun" }
+                                ],
+                                examples: [
+                                    { maya: "Jun péek'", spanish: "Un perro" },
+                                    { maya: "Ka' wíinik", spanish: "Dos hombres" },
+                                    { maya: "Óox paalalo'ob", spanish: "Tres niños" }
+                                ]
+                            },
+                            {
+                                title: "Números del 11 al 20",
+                                icon: "fas fa-list-ol",
+                                items: [
+                                    { maya: "Buluk", pronunciation: "Bu-luk", meaning: "Once", audioText: "Buluk" },
+                                    { maya: "Láa ka'a", pronunciation: "La-a ka-a", meaning: "Doce", audioText: "Láa ka'a" },
+                                    { maya: "Óox láajun", pronunciation: "Osh la-a-hun", meaning: "Trece", audioText: "Óox láajun" },
+                                    { maya: "Kan láajun", pronunciation: "Kan la-a-hun", meaning: "Catorce", audioText: "Kan láajun" },
+                                    { maya: "Jo' láajun", pronunciation: "Ho la-a-hun", meaning: "Quince", audioText: "Jo' láajun" },
+                                    { maya: "Wáak láajun", pronunciation: "Wa-ak la-a-hun", meaning: "Dieciséis", audioText: "Wáak láajun" },
+                                    { maya: "Úuk láajun", pronunciation: "U-uk la-a-hun", meaning: "Diecisiete", audioText: "Úuk láajun" },
+                                    { maya: "Waxak láajun", pronunciation: "Wa-shak la-a-hun", meaning: "Dieciocho", audioText: "Waxak láajun" },
+                                    { maya: "Bolon láajun", pronunciation: "Bo-lon la-a-hun", meaning: "Diecinueve", audioText: "Bolon láajun" },
+                                    { maya: "Jun k'áal", pronunciation: "Jun k'a-al", meaning: "Veinte", audioText: "Jun k'áal" }
+                                ],
+                                examples: [
+                                    { maya: "Buluk ha'as", spanish: "Once plátanos" },
+                                    { maya: "Láa ka'a k'áax", spanish: "Doce árboles" },
+                                    { maya: "Jun k'áal wiinik", spanish: "Veinte hombres" }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 3,
+                    title: "Colores Primarios",
+                    description: "Aprende los nombres de los colores primarios en maya.",
+                    points: 3,
+                    completed: false,
+                    content: {
+                        introduction: "Los colores en maya tienen nombres muy descriptivos, a menudo relacionados con elementos naturales.",
+                        sections: [
+                            {
+                                title: "Colores básicos",
+                                icon: "fas fa-palette",
+                                items: [
+                                    { maya: "Chak", pronunciation: "Chak", meaning: "Rojo", audioText: "Chak", color: "#dc3545" },
+                                    { maya: "Ya'ax", pronunciation: "Ya-ash", meaning: "Verde/azul", audioText: "Ya'ax", color: "#28a745" },
+                                    { maya: "K'an", pronunciation: "K'an", meaning: "Amarillo", audioText: "K'an", color: "#ffc107" },
+                                    { maya: "Sak", pronunciation: "Sak", meaning: "Blanco", audioText: "Sak", color: "#f8f9fa" },
+                                    { maya: "B'oox", pronunciation: "Bo-osh", meaning: "Negro", audioText: "B'oox", color: "#343a40" }
+                                ],
+                                examples: [
+                                    { maya: "Chak nikte'", spanish: "Flor roja" },
+                                    { maya: "Ya'ax ha'", spanish: "Agua verde/azul" },
+                                    { maya: "K'an nal", spanish: "Maíz amarillo" }
+                                ]
+                            },
+                            {
+                                title: "Más colores",
+                                icon: "fas fa-fill-drip",
+                                items: [
+                                    { maya: "Ch'ooj", pronunciation: "Cho-oj", meaning: "Azul", audioText: "Ch'ooj", color: "#007bff" },
+                                    { maya: "Ek'", pronunciation: "Ek", meaning: "Negro/oscuro", audioText: "Ek'", color: "#212529" },
+                                    { maya: "Ta'ank'iin", pronunciation: "Ta-an-k'in", meaning: "Naranja (color del atardecer)", audioText: "Ta'ank'iin", color: "#fd7e14" }
+                                ],
+                                examples: [
+                                    { maya: "Ch'ooj lu'um", spanish: "Tierra azul (para cerámica)" },
+                                    { maya: "Ek' áak'ab", spanish: "Noche oscura" },
+                                    { maya: "Ta'ank'iin k'iin", spanish: "Atardecer (literalmente: 'sol naranja')" }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 4,
+                    title: "Presentación Personal",
+                    description: "Aprende a presentarte en maya.",
+                    points: 6,
+                    completed: false,
+                    content: {
+                        introduction: "Aprende frases básicas para presentarte y hablar sobre ti mismo en maya.",
+                        sections: [
+                            {
+                                title: "Mi nombre",
+                                icon: "fas fa-user",
+                                items: [
+                                    { maya: "In k'aaba'e'...", pronunciation: "In ka-a-ba-e", meaning: "Mi nombre es...", audioText: "In k'aaba'e'" },
+                                    { maya: "Bix a k'aaba'?", pronunciation: "Bish a ka-a-ba", meaning: "¿Cómo te llamas?", audioText: "Bix a k'aaba'" }
+                                ],
+                                examples: [
+                                    { maya: "In k'aaba'e' José", spanish: "Mi nombre es José" },
+                                    { maya: "In k'aaba'e' María", spanish: "Mi nombre es María" }
+                                ]
+                            },
+                            {
+                                title: "Mi edad",
+                                icon: "fas fa-birthday-cake",
+                                items: [
+                                    { maya: "Juntúul...", pronunciation: "Jun-tu-ul", meaning: "Tengo... años", audioText: "Juntúul" },
+                                    { maya: "Bix a jaantil?", pronunciation: "Bish a haan-til", meaning: "¿Cuántos años tienes?", audioText: "Bix a jaantil" }
+                                ],
+                                examples: [
+                                    { maya: "Juntúul láajun ha'ab", spanish: "Tengo diez años" },
+                                    { maya: "Juntúul jun k'áal ha'ab", spanish: "Tengo veinte años" }
+                                ]
+                            },
+                            {
+                                title: "De dónde soy",
+                                icon: "fas fa-map-marker-alt",
+                                items: [
+                                    { maya: "In taale'...", pronunciation: "In ta-a-le", meaning: "Soy de...", audioText: "In taale'" },
+                                    { maya: "Tu'ux a taalech?", pronunciation: "Tu-ush a ta-a-lech", meaning: "¿De dónde eres?", audioText: "Tu'ux a taalech" }
+                                ],
+                                examples: [
+                                    { maya: "In taale' Mérida", spanish: "Soy de Mérida" },
+                                    { maya: "In taale' Chan Chen", spanish: "Soy de Chichén Itzá" }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 5,
+                    title: "Familia Inmediata",
+                    description: "Aprende los nombres de los miembros de la familia.",
+                    points: 4,
+                    completed: false,
+                    content: {
+                        introduction: "La familia es muy importante en la cultura maya. Aprende los términos para los miembros de la familia.",
+                        sections: [
+                            {
+                                title: "Padres y hermanos",
+                                icon: "fas fa-home",
+                                items: [
+                                    { maya: "Yum", pronunciation: "Yum", meaning: "Padre", audioText: "Yum" },
+                                    { maya: "Na'", pronunciation: "Na", meaning: "Madre", audioText: "Na'" },
+                                    { maya: "Suku'un", pronunciation: "Su-ku-un", meaning: "Hermano mayor", audioText: "Suku'un" },
+                                    { maya: "Íits'in", pronunciation: "I-tsin", meaning: "Hermano menor", audioText: "Íits'in" }
+                                ],
+                                examples: [
+                                    { maya: "In yum", spanish: "Mi padre" },
+                                    { maya: "In na'", spanish: "Mi madre" }
+                                ]
+                            },
+                            {
+                                title: "Hijos y abuelos",
+                                icon: "fas fa-users",
+                                items: [
+                                    { maya: "Paal", pronunciation: "Pa-al", meaning: "Hijo/hija", audioText: "Paal" },
+                                    { maya: "Chan paal", pronunciation: "Chan pa-al", meaning: "Niño/niña pequeño/a", audioText: "Chan paal" },
+                                    { maya: "Mam", pronunciation: "Mam", meaning: "Abuelo", audioText: "Mam" },
+                                    { maya: "Chich", pronunciation: "Chich", meaning: "Abuela", audioText: "Chich" }
+                                ],
+                                examples: [
+                                    { maya: "In paal", spanish: "Mi hijo/hija" },
+                                    { maya: "In mam", spanish: "Mi abuelo" }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 6,
+                    title: "Animales Comunes",
+                    description: "Identifica nombres de animales comunes en maya.",
+                    points: 4,
+                    completed: false,
+                    content: {
+                        introduction: "Los animales tienen nombres muy específicos en maya, a menudo relacionados con sus características.",
+                        sections: [
+                            {
+                                title: "Animales domésticos",
+                                icon: "fas fa-paw",
+                                items: [
+                                    { maya: "Péek'", pronunciation: "Pek", meaning: "Perro", audioText: "Péek'" },
+                                    { maya: "Míis", pronunciation: "Mis", meaning: "Gato", audioText: "Míis" },
+                                    { maya: "Kaax", pronunciation: "Ka-ash", meaning: "Gallina/pollo", audioText: "Kaax" }
+                                ],
+                                examples: [
+                                    { maya: "Jun túul péek'", spanish: "Un perro" },
+                                    { maya: "Ka' túul míis", spanish: "Dos gatos" }
+                                ]
+                            },
+                            {
+                                title: "Animales salvajes",
+                                icon: "fas fa-tree",
+                                items: [
+                                    { maya: "Báalam", pronunciation: "Ba-a-lam", meaning: "Jaguar", audioText: "Báalam" },
+                                    { maya: "Kéeh", pronunciation: "Keh", meaning: "Venado", audioText: "Kéeh" },
+                                    { maya: "Ch'íich'", pronunciation: "Chi-ich", meaning: "Pájaro", audioText: "Ch'íich'" }
+                                ],
+                                examples: [
+                                    { maya: "Báalam tu yóol kaax", spanish: "Jaguar en el corazón del monte" },
+                                    { maya: "Ch'íich' táan u ka'ansik", spanish: "Pájaro que está cantando" }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: 7,
+                    title: "Frases de Cortesía",
+                    description: "Practica frases de cortesía y agradecimiento.",
+                    points: 4,
+                    completed: false,
+                    content: {
+                        introduction: "Las frases de cortesía son importantes en cualquier idioma. Aprende las más comunes en maya.",
+                        sections: [
+                            {
+                                title: "Por favor y gracias",
+                                icon: "fas fa-handshake",
+                                items: [
+                                    { maya: "P'áat in wóol", pronunciation: "Pa-at in wol", meaning: "Por favor", audioText: "P'áat in wóol" },
+                                    { maya: "Jach yóolalkiin", pronunciation: "Jach yo-o-lal-kin", meaning: "Muchas gracias", audioText: "Jach yóolalkiin" },
+                                    { maya: "Mix ba'al", pronunciation: "Mish ba-al", meaning: "De nada", audioText: "Mix ba'al" }
+                                ],
+                                examples: [
+                                    { maya: "P'áat in wóol, k'áat in bin", spanish: "Por favor, quiero ir" },
+                                    { maya: "Jach yóolalkiin ti' a meyah", spanish: "Muchas gracias por tu trabajo" }
+                                ]
+                            },
+                            {
+                                title: "Permiso y disculpas",
+                                icon: "fas fa-user-check",
+                                items: [
+                                    { maya: "P'áat in wóol in bin", pronunciation: "Pa-at in wol in bin", meaning: "Con permiso", audioText: "P'áat in wóol in bin" },
+                                    { maya: "K'áat in puksí'ik'al", pronunciation: "Ka-at in puk-si-i-kal", meaning: "Disculpa/perdón", audioText: "K'áat in puksí'ik'al" }
+                                ],
+                                examples: [
+                                    { maya: "P'áat in wóol in bin táan in wo'och", spanish: "Con permiso, voy a comer" },
+                                    { maya: "K'áat in puksí'ik'al, ma' in taal", spanish: "Disculpa, no vine" }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ],
+            intermedio: [
+                {
+                    id: 8,
+                    title: "Verbos de Acción",
+                    description: "Conjuga verbos de acción en presente.",
+                    points: 5,
+                    completed: false,
+                    content: {
+                        introduction: "Los verbos en maya se conjugan según la persona. Aprende las conjugaciones básicas.",
+                        sections: [
+                            {
+                                title: "Conjugaciones básicas",
+                                icon: "fas fa-running",
+                                items: [
+                                    { maya: "In bin", pronunciation: "In bin", meaning: "Yo voy", audioText: "In bin" },
+                                    { maya: "A bin", pronunciation: "A bin", meaning: "Tú vas", audioText: "A bin" },
+                                    { maya: "U bin", pronunciation: "U bin", meaning: "Él/ella va", audioText: "U bin" }
+                                ],
+                                examples: [
+                                    { maya: "In bin tu yóol kaax", spanish: "Yo voy al corazón del monte" },
+                                    { maya: "A bin tu najil", spanish: "Tú vas a tu casa" }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        };
+        
+        // Base de datos de exámenes
+        const examsData = {
+            basico: {
+                title: "Examen Final - Nivel Básico",
+                description: "Evalúa tus conocimientos del nivel básico de maya.",
+                totalPoints: 30,
+                timeLimit: 30, // minutos
+                questions: [
+                    {
+                        id: 1,
+                        question: "¿Cómo se dice 'Buenos días' en maya?",
+                        type: "multiple-choice",
+                        points: 3,
+                        options: [
+                            { text: "Ma'alob k'iin", correct: true },
+                            { text: "Bix a beel", correct: false },
+                            { text: "Jach yóolalkiin", correct: false },
+                            { text: "Mix ba'al", correct: false }
+                        ]
+                    },
+                    {
+                        id: 2,
+                        question: "¿Cómo se dice el número 5 en maya?",
+                        type: "multiple-choice",
+                        points: 3,
+                        options: [
+                            { text: "Ka'", correct: false },
+                            { text: "Jo'", correct: true },
+                            { text: "Óox", correct: false },
+                            { text: "Kan", correct: false }
+                        ]
+                    },
+                    {
+                        id: 3,
+                        question: "¿Qué significa 'Chak' en español?",
+                        type: "multiple-choice",
+                        points: 3,
+                        options: [
+                            { text: "Verde", correct: false },
+                            { text: "Rojo", correct: true },
+                            { text: "Azul", correct: false },
+                            { text: "Amarillo", correct: false }
+                        ]
+                    },
+                    {
+                        id: 4,
+                        question: "Traduce al maya: 'Mi nombre es Juan'",
+                        type: "text",
+                        points: 4,
+                        correctAnswer: "in k'aaba'e' juan"
+                    },
+                    {
+                        id: 5,
+                        question: "¿Cómo se dice 'padre' en maya?",
+                        type: "multiple-choice",
+                        points: 3,
+                        options: [
+                            { text: "Na'", correct: false },
+                            { text: "Yum", correct: true },
+                            { text: "Mam", correct: false },
+                            { text: "Paal", correct: false }
+                        ]
+                    },
+                    {
+                        id: 6,
+                        question: "¿Qué animal es 'Péek'' en español?",
+                        type: "multiple-choice",
+                        points: 3,
+                        options: [
+                            { text: "Gato", correct: false },
+                            { text: "Perro", correct: true },
+                            { text: "Jaguar", correct: false },
+                            { text: "Venado", correct: false }
+                        ]
+                    },
+                    {
+                        id: 7,
+                        question: "Escribe en maya: 'Por favor'",
+                        type: "text",
+                        points: 4,
+                        correctAnswer: "p'áat in wóol"
+                    },
+                    {
+                        id: 8,
+                        question: "¿Cómo respondes a 'Bix a beel?' si estás bien?",
+                        type: "multiple-choice",
+                        points: 3,
+                        options: [
+                            { text: "Jach ma'alob", correct: true },
+                            { text: "Ma' utzil", correct: false },
+                            { text: "Bix a k'aaba'?", correct: false },
+                            { text: "Tu'ux a taalech?", correct: false }
+                        ]
+                    },
+                    {
+                        id: 9,
+                        question: "¿Qué número es 'Óox' en español?",
+                        type: "multiple-choice",
+                        points: 3,
+                        options: [
+                            { text: "2", correct: false },
+                            { text: "3", correct: true },
+                            { text: "4", correct: false },
+                            { text: "5", correct: false }
+                        ]
+                    },
+                    {
+                        id: 10,
+                        question: "Completa la frase: 'In taale' ________' (Soy de Mérida)",
+                        type: "text",
+                        points: 4,
+                        correctAnswer: "mérida"
+                    }
+                ]
+            },
+            intermedio: {
+                title: "Examen Final - Nivel Intermedio",
+                description: "Evalúa tus conocimientos del nivel intermedio de maya.",
+                totalPoints: 23,
+                timeLimit: 30,
+                questions: [
+                    {
+                        id: 1,
+                        question: "Conjuga el verbo 'bin' (ir) para 'yo':",
+                        type: "text",
+                        points: 5,
+                        correctAnswer: "in bin"
+                    },
+                    {
+                        id: 2,
+                        question: "¿Cómo se forma la negación en maya?",
+                        type: "multiple-choice",
+                        points: 4,
+                        options: [
+                            { text: "Usando 'ma' antes del verbo", correct: true },
+                            { text: "Usando 'mix' después del sujeto", correct: false },
+                            { text: "Cambiando la terminación del verbo", correct: false },
+                            { text: "Añadiendo 'ka' al final", correct: false }
+                        ]
+                    }
+                ]
+            },
+            avanzado: {
+                title: "Examen Final - Nivel Avanzado",
+                description: "Evalúa tus conocimientos del nivel avanzado de maya.",
+                totalPoints: 35,
+                timeLimit: 45,
+                questions: [
+                    {
+                        id: 1,
+                        question: "Menciona un texto importante de la literatura maya:",
+                        type: "text",
+                        points: 10,
+                        correctAnswer: "popol vuh"
+                    }
+                ]
+            }
+        };
+        
+        // Estado de la aplicación
+        let currentUser = null;
+        let userLessons = JSON.parse(localStorage.getItem('userLessons')) || lessonsData;
+        let userProgress = JSON.parse(localStorage.getItem('userProgress')) || {
+            basico: { completed: 0, totalPoints: 0, totalTasks: 7, maxPoints: 30 },
+            intermedio: { completed: 0, totalPoints: 0, totalTasks: 5, maxPoints: 23 },
+            avanzado: { completed: 0, totalPoints: 0, totalTasks: 6, maxPoints: 35 }
+        };
+        
+        // Variables para lección actual
+        let currentLesson = null;
+        let currentLessonLevel = null;
+        
+        // Variables para examen actual
+        let currentExam = null;
+        let currentExamLevel = null;
+        let examAnswers = {};
+        let examTimer = null;
+        let examTimeLeft = 0;
+        
+        // Elementos del DOM
+        const authBtn = document.getElementById('authBtn');
+        const authForm = document.getElementById('authForm');
+        const authFormTitle = document.getElementById('authFormTitle');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const authSwitchLink = document.getElementById('authSwitchLink');
+        const authSwitchText = document.getElementById('authSwitchText');
+        const userInfo = document.getElementById('userInfo');
+        const userAvatar = document.getElementById('userAvatar');
+        const userEmail = document.getElementById('userEmail');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const systemMessage = document.getElementById('systemMessage');
+        const tasksGrid = document.getElementById('tasksGrid');
+        const tasksCompleted = document.getElementById('tasksCompleted');
+        const tasksPercentage = document.getElementById('tasksPercentage');
+        const progressFill = document.getElementById('progressFill');
+        const totalPoints = document.getElementById('totalPoints');
+        const totalPointsValue = document.getElementById('totalPointsValue');
+        const basicPoints = document.getElementById('basicPoints');
+        const intermediatePoints = document.getElementById('intermediatePoints');
+        const advancedPoints = document.getElementById('advancedPoints');
+        
+        // Elementos del modal de lección
+        const lessonModal = document.getElementById('lessonModal');
+        const lessonTitle = document.getElementById('lessonTitle');
+        const lessonContent = document.getElementById('lessonContent');
+        const closeLesson = document.getElementById('closeLesson');
+        const completeLessonBtn = document.getElementById('completeLessonBtn');
+        const lessonPoints = document.getElementById('lessonPoints');
+        
+        // Elementos del modal de examen
+        const examModal = document.getElementById('examModal');
+        const examTitle = document.getElementById('examTitle');
+        const examContent = document.getElementById('examContent');
+        const closeExam = document.getElementById('closeExam');
+        const submitExamBtn = document.getElementById('submitExamBtn');
+        const examTimerDisplay = document.getElementById('examTimer');
+        
+        // Botones de examen
+        const basicoExamBtn = document.getElementById('basicoExamBtn');
+        const intermedioExamBtn = document.getElementById('intermedioExamBtn');
+        const avanzadoExamBtn = document.getElementById('avanzadoExamBtn');
+        
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar si hay un usuario en localStorage
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                updateAuthUI();
+            }
+            
+            // Cargar lecciones
+            loadLessons();
+            updateProgress();
+            
+            // Event Listeners
+            authBtn.addEventListener('click', toggleAuthForm);
+            authSwitchLink.addEventListener('click', toggleAuthMode);
+            logoutBtn.addEventListener('click', logout);
+            closeLesson.addEventListener('click', closeLessonModal);
+            completeLessonBtn.addEventListener('click', completeLesson);
+            closeExam.addEventListener('click', closeExamModal);
+            submitExamBtn.addEventListener('click', submitExam);
+            
+            // Botones de examen
+            basicoExamBtn.addEventListener('click', () => openExamModal('basico'));
+            intermedioExamBtn.addEventListener('click', () => openExamModal('intermedio'));
+            avanzadoExamBtn.addEventListener('click', () => openExamModal('avanzado'));
+            
+            // Formularios
+            loginForm.addEventListener('submit', handleLogin);
+            registerForm.addEventListener('submit', handleRegister);
+            
+            // Navegación suave
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href').substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+            
+            // Botones de nivel
+            document.querySelectorAll('.level-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const level = this.getAttribute('data-level');
+                    if (!currentUser) {
+                        showMessage('Por favor, inicia sesión para acceder a los niveles', 'error');
+                        toggleAuthForm();
+                        return;
+                    }
+                    
+                    showMessage(`¡Bienvenido al nivel ${level}! Las lecciones están disponibles abajo.`, 'success');
+                    
+                    // Desplazarse a la sección de tareas
+                    const tasksSection = document.getElementById('tareas');
+                    window.scrollTo({
+                        top: tasksSection.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+        
+        // Funciones de autenticación
+        function toggleAuthForm() {
+            authForm.classList.toggle('active');
+        }
+        
+        function toggleAuthMode() {
+            const isLogin = loginForm.style.display !== 'none';
+            
+            if (isLogin) {
+                // Cambiar a registro
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+                authFormTitle.textContent = 'Registrarse';
+                authSwitchText.textContent = '¿Ya tienes una cuenta? ';
+                authSwitchLink.textContent = 'Inicia sesión aquí';
+            } else {
+                // Cambiar a inicio de sesión
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+                authFormTitle.textContent = 'Iniciar Sesión';
+                authSwitchText.textContent = '¿No tienes una cuenta? ';
+                authSwitchLink.textContent = 'Regístrate aquí';
+            }
+        }
+        
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Validación simple
+            if (!email || !password) {
+                showMessage('Por favor, completa todos los campos', 'error');
+                return;
+            }
+            
+            // Simular inicio de sesión
+            currentUser = {
+                name: email.split('@')[0],
+                email: email,
+                avatar: email.charAt(0).toUpperCase()
+            };
+            
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            updateAuthUI();
+            toggleAuthForm();
+            showMessage('¡Inicio de sesión exitoso!', 'success');
+            
+            // Limpiar formulario
+            loginForm.reset();
+        }
+        
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            
+            // Validación
+            if (!name || !email || !password || !confirmPassword) {
+                showMessage('Por favor, completa todos los campos', 'error');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showMessage('Las contraseñas no coinciden', 'error');
+                return;
+            }
+            
+            if (password.length < 6) {
+                showMessage('La contraseña debe tener al menos 6 caracteres', 'error');
+                return;
+            }
+            
+            // Simular registro
+            currentUser = {
+                name: name,
+                email: email,
+                avatar: name.charAt(0).toUpperCase()
+            };
+            
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            updateAuthUI();
+            toggleAuthForm();
+            showMessage('¡Registro exitoso! Bienvenido/a ' + name, 'success');
+            
+            // Limpiar formulario
+            registerForm.reset();
+        }
+        
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            updateAuthUI();
+            showMessage('Sesión cerrada correctamente', 'success');
+        }
+        
+        function updateAuthUI() {
+            if (currentUser) {
+                authBtn.style.display = 'none';
+                userInfo.classList.add('active');
+                userAvatar.textContent = currentUser.avatar;
+                userEmail.textContent = currentUser.email;
+                authForm.classList.remove('active');
+            } else {
+                authBtn.style.display = 'flex';
+                userInfo.classList.remove('active');
+            }
+        }
+        
+        // Funciones de lecciones
+        function loadLessons() {
+            tasksGrid.innerHTML = '';
+            
+            // Combinar todas las lecciones
+            const allLessons = [
+                ...userLessons.basico.map(lesson => ({...lesson, level: 'basico'})),
+                ...userLessons.intermedio.map(lesson => ({...lesson, level: 'intermedio'})),
+                ...(userLessons.avanzado || []).map(lesson => ({...lesson, level: 'avanzado'}))
+            ];
+            
+            allLessons.forEach(lesson => {
+                const lessonCard = document.createElement('div');
+                lessonCard.className = 'task-card';
+                lessonCard.innerHTML = `
+                    <div class="task-header">
+                        <div class="task-title">${lesson.title}</div>
+                        <div class="task-points">${lesson.points} pts</div>
+                    </div>
+                    <div class="task-description">${lesson.description}</div>
+                    <div class="task-status">
+                        <button class="task-complete-btn ${lesson.completed ? 'completed' : ''}" 
+                                data-id="${lesson.id}" data-level="${lesson.level}">
+                            ${lesson.completed ? 'Completada' : 'Realizar Lección'}
+                        </button>
+                        <span class="task-status-label ${lesson.completed ? 'completed' : 'pending'}">
+                            ${lesson.completed ? '✓ Completada' : '⏳ Pendiente'}
+                        </span>
+                    </div>
+                `;
+                tasksGrid.appendChild(lessonCard);
+            });
+            
+            // Agregar event listeners a los botones de lección
+            document.querySelectorAll('.task-complete-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    if (!currentUser) {
+                        showMessage('Por favor, inicia sesión para acceder a las lecciones', 'error');
+                        toggleAuthForm();
+                        return;
+                    }
+                    
+                    const lessonId = parseInt(this.getAttribute('data-id'));
+                    const lessonLevel = this.getAttribute('data-level');
+                    openLessonModal(lessonId, lessonLevel);
+                });
+            });
+        }
+        
+        function openLessonModal(lessonId, level) {
+            const lessonIndex = userLessons[level].findIndex(lesson => lesson.id === lessonId);
+            
+            if (lessonIndex !== -1) {
+                currentLesson = userLessons[level][lessonIndex];
+                currentLessonLevel = level;
+                
+                // Configurar modal
+                lessonTitle.textContent = currentLesson.title;
+                lessonPoints.textContent = `Puntos: ${currentLesson.points}`;
+                
+                // Limpiar contenido anterior
+                lessonContent.innerHTML = '';
+                
+                // Agregar introducción
+                const introDiv = document.createElement('div');
+                introDiv.className = 'lesson-section';
+                introDiv.innerHTML = `
+                    <h4><i class="fas fa-info-circle"></i> Introducción</h4>
+                    <p>${currentLesson.content.introduction}</p>
+                `;
+                lessonContent.appendChild(introDiv);
+                
+                // Agregar secciones de contenido
+                currentLesson.content.sections.forEach(section => {
+                    const sectionDiv = document.createElement('div');
+                    sectionDiv.className = 'lesson-section';
+                    
+                    let sectionHTML = `<h4><i class="${section.icon}"></i> ${section.title}</h4>`;
+                    
+                    // Agregar items de vocabulario
+                    section.items.forEach(item => {
+                        const colorStyle = item.color ? `style="color: ${item.color}; font-weight: bold;"` : '';
+                        sectionHTML += `
+                            <div class="pronunciation-box">
+                                <div class="maya-word" ${colorStyle}>${item.maya}</div>
+                                <div class="pronunciation">Pronunciación: ${item.pronunciation}</div>
+                                <div class="audio-container">
+                                    <button class="play-audio" data-text="${item.audioText}">
+                                        <i class="fas fa-volume-up"></i>
+                                        <span>Escuchar pronunciación</span>
+                                    </button>
+                                </div>
+                                <div class="meaning">Significado: ${item.meaning}</div>
+                            </div>
+                        `;
+                    });
+                    
+                    // Agregar ejemplos si existen
+                    if (section.examples && section.examples.length > 0) {
+                        sectionHTML += `<h5 style="margin-top: 20px; color: var(--primary-color);">Ejemplos:</h5>`;
+                        sectionHTML += `<div class="examples-grid">`;
+                        
+                        section.examples.forEach(example => {
+                            sectionHTML += `
+                                <div class="example-card">
+                                    <div class="example-maya">${example.maya}</div>
+                                    <div class="example-spanish">${example.spanish}</div>
+                                </div>
+                            `;
+                        });
+                        
+                        sectionHTML += `</div>`;
+                    }
+                    
+                    sectionDiv.innerHTML = sectionHTML;
+                    lessonContent.appendChild(sectionDiv);
+                });
+                
+                // Configurar botón de completar
+                if (currentLesson.completed) {
+                    completeLessonBtn.classList.add('completed');
+                    completeLessonBtn.innerHTML = '<i class="fas fa-check-circle"></i><span>Lección Completada</span>';
+                    completeLessonBtn.disabled = true;
+                } else {
+                    completeLessonBtn.classList.remove('completed');
+                    completeLessonBtn.innerHTML = '<i class="fas fa-check-circle"></i><span>Marcar como Completada</span>';
+                    completeLessonBtn.disabled = false;
+                }
+                
+                // Agregar event listeners para botones de audio
+                setTimeout(() => {
+                    document.querySelectorAll('.play-audio').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const text = this.getAttribute('data-text');
+                            playAudio(text);
+                        });
+                    });
+                }, 100);
+                
+                // Mostrar modal
+                lessonModal.classList.add('active');
+            }
+        }
+        
+        function playAudio(text) {
+            // Usar la API de síntesis de voz del navegador
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                
+                // Configurar voz (intentar usar español mexicano)
+                const voices = speechSynthesis.getVoices();
+                const spanishVoice = voices.find(voice => 
+                    voice.lang.startsWith('es') && voice.name.includes('Mexico')
+                ) || voices.find(voice => voice.lang.startsWith('es'));
+                
+                if (spanishVoice) {
+                    utterance.voice = spanishVoice;
+                }
+                
+                utterance.rate = 0.8; // Velocidad ligeramente más lenta para mejor comprensión
+                utterance.pitch = 1;
+                
+                speechSynthesis.speak(utterance);
+            } else {
+                showMessage('Tu navegador no soporta la función de audio', 'error');
+            }
+        }
+        
+        function closeLessonModal() {
+            lessonModal.classList.remove('active');
+        }
+        
+        function completeLesson() {
+            if (!currentLesson || !currentLessonLevel || currentLesson.completed) return;
+            
+            // Marcar lección como completada
+            currentLesson.completed = true;
+            
+            // Actualizar progreso
+            userProgress[currentLessonLevel].completed++;
+            userProgress[currentLessonLevel].totalPoints += currentLesson.points;
+            
+            // Guardar cambios
+            localStorage.setItem('userLessons', JSON.stringify(userLessons));
+            localStorage.setItem('userProgress', JSON.stringify(userProgress));
+            
+            // Actualizar UI
+            loadLessons();
+            updateProgress();
+            
+            // Actualizar botón en el modal
+            completeLessonBtn.classList.add('completed');
+            completeLessonBtn.innerHTML = '<i class="fas fa-check-circle"></i><span>Lección Completada</span>';
+            completeLessonBtn.disabled = true;
+            
+            // Mostrar mensaje
+            showMessage(`¡Lección completada! +${currentLesson.points} puntos`, 'success');
+        }
+        
+        // Funciones de exámenes
+        function openExamModal(level) {
+            if (!currentUser) {
+                showMessage('Por favor, inicia sesión para tomar exámenes', 'error');
+                toggleAuthForm();
+                return;
+            }
+            
+            currentExam = examsData[level];
+            currentExamLevel = level;
+            examAnswers = {};
+            
+            // Configurar modal
+            examTitle.textContent = currentExam.title;
+            
+            // Limpiar contenido anterior
+            examContent.innerHTML = '';
+            
+            // Agregar información del examen
+            const examInfoDiv = document.createElement('div');
+            examInfoDiv.className = 'exam-info';
+            examInfoDiv.innerHTML = `
+                <h4>Instrucciones del examen</h4>
+                <p>${currentExam.description}</p>
+                <p><strong>Total de preguntas:</strong> ${currentExam.questions.length}</p>
+                <p><strong>Puntos totales:</strong> ${currentExam.totalPoints}</p>
+                <p><strong>Tiempo límite:</strong> ${currentExam.timeLimit} minutos</p>
+                <div class="exam-timer" id="examTimerDisplay">Tiempo restante: ${currentExam.timeLimit}:00</div>
+            `;
+            examContent.appendChild(examInfoDiv);
+            
+            // Agregar preguntas
+            currentExam.questions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'exam-question';
+                questionDiv.innerHTML = `
+                    <div class="question-text">
+                        <span class="question-number">${index + 1}</span>
+                        ${question.question} <small>(Puntos: ${question.points})</small>
+                    </div>
+                `;
+                
+                // Crear opciones según el tipo de pregunta
+                const optionsContainer = document.createElement('div');
+                optionsContainer.className = 'exam-options';
+                
+                if (question.type === 'multiple-choice') {
+                    question.options.forEach((option, optIndex) => {
+                        const optionDiv = document.createElement('div');
+                        optionDiv.className = 'exam-option';
+                        optionDiv.dataset.index = optIndex;
+                        optionDiv.innerHTML = `
+                            <input type="radio" name="question-${question.id}" id="q${question.id}-opt${optIndex}" value="${optIndex}">
+                            <label for="q${question.id}-opt${optIndex}">${option.text}</label>
+                        `;
+                        
+                        optionDiv.addEventListener('click', function() {
+                            // Seleccionar esta opción
+                            const radioInput = this.querySelector('input[type="radio"]');
+                            radioInput.checked = true;
+                            
+                            // Remover selección de otras opciones en este grupo
+                            const allOptions = optionsContainer.querySelectorAll('.exam-option');
+                            allOptions.forEach(opt => opt.classList.remove('selected'));
+                            
+                            // Marcar esta como seleccionada
+                            this.classList.add('selected');
+                            
+                            // Guardar respuesta
+                            examAnswers[question.id] = optIndex;
+                        });
+                        
+                        optionsContainer.appendChild(optionDiv);
+                    });
+                } 
+                else if (question.type === 'text') {
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.className = 'exam-text-answer';
+                    input.placeholder = 'Escribe tu respuesta aquí...';
+                    input.dataset.questionId = question.id;
+                    
+                    input.addEventListener('input', function() {
+                        examAnswers[question.id] = this.value.trim().toLowerCase();
+                    });
+                    
+                    optionsContainer.appendChild(input);
+                }
+                
+                questionDiv.appendChild(optionsContainer);
+                examContent.appendChild(questionDiv);
+            });
+            
+            // Configurar botón de enviar
+            submitExamBtn.disabled = false;
+            submitExamBtn.innerHTML = '<i class="fas fa-paper-plane"></i><span>Enviar Examen</span>';
+            
+            // Iniciar temporizador
+            startExamTimer();
+            
+            // Mostrar modal
+            examModal.classList.add('active');
+        }
+        
+        function startExamTimer() {
+            // Convertir minutos a segundos
+            examTimeLeft = currentExam.timeLimit * 60;
+            
+            // Actualizar display del temporizador
+            updateTimerDisplay();
+            
+            // Iniciar temporizador
+            examTimer = setInterval(function() {
+                examTimeLeft--;
+                
+                if (examTimeLeft <= 0) {
+                    clearInterval(examTimer);
+                    submitExam(); // Enviar automáticamente cuando se acaba el tiempo
+                } else {
+                    updateTimerDisplay();
+                }
+            }, 1000);
+        }
+        
+        function updateTimerDisplay() {
+            const minutes = Math.floor(examTimeLeft / 60);
+            const seconds = examTimeLeft % 60;
+            examTimerDisplay.textContent = `Tiempo restante: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            
+            // Cambiar color cuando quede poco tiempo
+            if (examTimeLeft < 300) { // Menos de 5 minutos
+                examTimerDisplay.style.backgroundColor = '#dc3545';
+                examTimerDisplay.style.color = 'white';
+            } else if (examTimeLeft < 600) { // Menos de 10 minutos
+                examTimerDisplay.style.backgroundColor = '#ffc107';
+                examTimerDisplay.style.color = 'var(--dark-color)';
+            }
+        }
+        
+        function closeExamModal() {
+            if (examTimer) {
+                clearInterval(examTimer);
+                examTimer = null;
+            }
+            examModal.classList.remove('active');
+        }
+        
+        function submitExam() {
+            if (!currentExam || !currentExamLevel) return;
+            
+            // Detener temporizador
+            if (examTimer) {
+                clearInterval(examTimer);
+                examTimer = null;
+            }
+            
+            // Validar que todas las preguntas estén respondidas
+            let allAnswered = true;
+            currentExam.questions.forEach(question => {
+                if (examAnswers[question.id] === undefined || examAnswers[question.id] === '') {
+                    allAnswered = false;
+                }
+            });
+            
+            if (!allAnswered) {
+                if (confirm('No has respondido todas las preguntas. ¿Estás seguro de que quieres enviar el examen?')) {
+                    calculateExamResults();
+                }
+            } else {
+                calculateExamResults();
+            }
+        }
+        
+        function calculateExamResults() {
+            let totalPoints = 0;
+            let correctAnswers = 0;
+            let totalQuestions = currentExam.questions.length;
+            
+            // Verificar respuestas
+            const results = currentExam.questions.map(question => {
+                const userAnswer = examAnswers[question.id];
+                let isCorrect = false;
+                let pointsEarned = 0;
+                
+                if (question.type === 'multiple-choice') {
+                    const selectedOption = question.options[userAnswer];
+                    if (selectedOption && selectedOption.correct) {
+                        isCorrect = true;
+                        pointsEarned = question.points;
+                        correctAnswers++;
+                        totalPoints += question.points;
+                    }
+                } 
+                else if (question.type === 'text') {
+                    const correctAnswer = question.correctAnswer.toLowerCase();
+                    if (userAnswer === correctAnswer) {
+                        isCorrect = true;
+                        pointsEarned = question.points;
+                        correctAnswers++;
+                        totalPoints += question.points;
+                    }
+                }
+                
+                return {
+                    question: question.question,
+                    userAnswer: userAnswer,
+                    correctAnswer: question.type === 'multiple-choice' ? 
+                        question.options.find(opt => opt.correct).text : question.correctAnswer,
+                    isCorrect: isCorrect,
+                    points: question.points,
+                    pointsEarned: pointsEarned
+                };
+            });
+            
+            // Calcular porcentaje
+            const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+            
+            // Mostrar resultados
+            showExamResults(results, totalPoints, percentage, correctAnswers, totalQuestions);
+        }
+        
+        function showExamResults(results, totalPoints, percentage, correctAnswers, totalQuestions) {
+            // Limpiar contenido
+            examContent.innerHTML = '';
+            
+            // Crear sección de resultados
+            const resultsDiv = document.createElement('div');
+            resultsDiv.className = 'exam-results';
+            
+            // Encabezado de resultados
+            const resultsHeader = document.createElement('div');
+            resultsHeader.className = 'results-header';
+            
+            let resultMessage = '';
+            let resultColor = '';
+            
+            if (percentage >= 80) {
+                resultMessage = '¡Excelente! Has aprobado el examen con una calificación sobresaliente.';
+                resultColor = 'var(--success-color)';
+            } else if (percentage >= 70) {
+                resultMessage = '¡Bien hecho! Has aprobado el examen.';
+                resultColor = 'var(--success-color)';
+            } else if (percentage >= 60) {
+                resultMessage = 'Aprobaste, pero necesitas repasar algunos conceptos.';
+                resultColor = 'var(--warning-color)';
+            } else {
+                resultMessage = 'No has aprobado el examen. Te recomendamos repasar las lecciones.';
+                resultColor = 'var(--danger-color)';
+            }
+            
+            resultsHeader.innerHTML = `
+                <div class="results-score" style="color: ${resultColor}">${percentage}%</div>
+                <div class="results-message">${resultMessage}</div>
+            `;
+            
+            resultsDiv.appendChild(resultsHeader);
+            
+            // Detalles de resultados
+            const detailsDiv = document.createElement('div');
+            detailsDiv.className = 'results-details';
+            
+            detailsDiv.innerHTML = `
+                <h4>Detalles del resultado</h4>
+                <div class="results-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">${correctAnswers}/${totalQuestions}</div>
+                        <div class="stat-label">Preguntas correctas</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">${totalPoints}/${currentExam.totalPoints}</div>
+                        <div class="stat-label">Puntos obtenidos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">${percentage}%</div>
+                        <div class="stat-label">Porcentaje</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">${Math.floor(examTimeLeft/60)}:${examTimeLeft%60 < 10 ? '0' : ''}${examTimeLeft%60}</div>
+                        <div class="stat-label">Tiempo restante</div>
+                    </div>
+                </div>
+            `;
+            
+            resultsDiv.appendChild(detailsDiv);
+            
+            // Preguntas individuales
+            const questionsDiv = document.createElement('div');
+            questionsDiv.className = 'results-questions';
+            questionsDiv.innerHTML = '<h4>Revisión de preguntas</h4>';
+            
+            results.forEach((result, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = `result-question ${result.isCorrect ? 'correct' : 'incorrect'}`;
+                
+                let userAnswerText = result.userAnswer;
+                if (typeof result.userAnswer === 'number') {
+                    // Para opción múltiple, obtener el texto de la opción seleccionada
+                    const question = currentExam.questions.find(q => q.question === result.question);
+                    if (question && question.type === 'multiple-choice') {
+                        userAnswerText = question.options[result.userAnswer]?.text || 'No respondida';
+                    }
+                }
+                
+                questionDiv.innerHTML = `
+                    <div><strong>Pregunta ${index + 1}:</strong> ${result.question}</div>
+                    <div><strong>Tu respuesta:</strong> ${userAnswerText || 'No respondida'}</div>
+                    <div><strong>Respuesta correcta:</strong> ${result.correctAnswer}</div>
+                    <div><strong>Puntos:</strong> ${result.pointsEarned}/${result.points}</div>
+                `;
+                
+                questionsDiv.appendChild(questionDiv);
+            });
+            
+            resultsDiv.appendChild(questionsDiv);
+            
+            // Botón para cerrar
+            const closeButton = document.createElement('button');
+            closeButton.className = 'submit-exam';
+            closeButton.innerHTML = '<i class="fas fa-check"></i><span>Cerrar resultados</span>';
+            closeButton.addEventListener('click', closeExamModal);
+            
+            const buttonContainer = document.createElement('div');
+            buttonContainer.style.textAlign = 'center';
+            buttonContainer.style.marginTop = '20px';
+            buttonContainer.appendChild(closeButton);
+            
+            resultsDiv.appendChild(buttonContainer);
+            
+            examContent.appendChild(resultsDiv);
+            
+            // Actualizar botón de enviar
+            submitExamBtn.style.display = 'none';
+            
+            // Actualizar progreso si aprobó el examen
+            if (percentage >= 70) {
+                // Guardar resultado del examen
+                const examResults = JSON.parse(localStorage.getItem('examResults')) || {};
+                if (!examResults[currentExamLevel]) {
+                    examResults[currentExamLevel] = {
+                        passed: true,
+                        score: percentage,
+                        date: new Date().toISOString(),
+                        points: totalPoints
+                    };
+                    
+                    // Agregar puntos extra por aprobar el examen
+                    const extraPoints = 10;
+                    userProgress[currentExamLevel].totalPoints += extraPoints;
+                    
+                    // Guardar cambios
+                    localStorage.setItem('examResults', JSON.stringify(examResults));
+                    localStorage.setItem('userProgress', JSON.stringify(userProgress));
+                    
+                    // Actualizar UI
+                    updateProgress();
+                    
+                    // Mostrar mensaje
+                    showMessage(`¡Examen aprobado! +${extraPoints} puntos extra`, 'success');
+                }
+            }
+        }
+        
+        function updateProgress() {
+            // Calcular totales
+            let totalCompleted = 0;
+            let totalPointsEarned = 0;
+            let totalTasks = 0;
+            let totalMaxPoints = 0;
+            
+            for (const level in userProgress) {
+                totalCompleted += userProgress[level].completed;
+                totalPointsEarned += userProgress[level].totalPoints;
+                totalTasks += userProgress[level].totalTasks;
+                totalMaxPoints += userProgress[level].maxPoints;
+            }
+            
+            // Calcular porcentaje
+            const percentage = totalTasks > 0 ? Math.round((totalCompleted / totalTasks) * 100) : 0;
+            
+            // Actualizar elementos del DOM
+            tasksCompleted.textContent = `${totalCompleted} lecciones completadas de ${totalTasks}`;
+            tasksPercentage.textContent = `${percentage}%`;
+            progressFill.style.width = `${percentage}%`;
+            totalPoints.textContent = `${totalPointsEarned} puntos`;
+            totalPointsValue.textContent = `${totalPointsEarned} puntos de ${totalMaxPoints}`;
+            
+            // Actualizar puntos por nivel
+            basicPoints.textContent = userProgress.basico.totalPoints;
+            intermediatePoints.textContent = userProgress.intermedio.totalPoints;
+            if (userProgress.avanzado) {
+                advancedPoints.textContent = userProgress.avanzado.totalPoints;
+            }
+        }
+        
+        // Mostrar mensajes del sistema
+        function showMessage(text, type) {
+            systemMessage.textContent = text;
+            systemMessage.className = `message ${type}`;
+            systemMessage.style.display = 'block';
+            
             setTimeout(() => {
-                document.body.removeChild(notification);
-            }, 300);
-        }, 3000);
-    }
-</script>
-
+                systemMessage.style.display = 'none';
+            }, 4000);
+        }
+        
+        // Cerrar formulario de autenticación al hacer clic fuera
+        document.addEventListener('click', function(event) {
+            const isAuthBtn = authBtn.contains(event.target);
+            const isAuthForm = authForm.contains(event.target);
+            
+            if (!isAuthBtn && !isAuthForm && authForm.classList.contains('active')) {
+                authForm.classList.remove('active');
+            }
+            
+            const isLessonModal = lessonModal.contains(event.target);
+            const isCloseLesson = closeLesson.contains(event.target);
+            
+            if (!isLessonModal && !isCloseLesson && event.target === lessonModal) {
+                closeLessonModal();
+            }
+            
+            const isExamModal = examModal.contains(event.target);
+            const isCloseExam = closeExam.contains(event.target);
+            
+            if (!isExamModal && !isCloseExam && event.target === examModal) {
+                closeExamModal();
+            }
+        });
+        
+        // Inicializar voces para síntesis de voz
+        if ('speechSynthesis' in window) {
+            speechSynthesis.getVoices(); // Cargar voces
+        }
+    </script>
 </body>
 </html>
